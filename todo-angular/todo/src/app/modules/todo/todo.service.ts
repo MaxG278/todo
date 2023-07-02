@@ -57,5 +57,27 @@ export class TodoService {
     };
     this.todoList.value.push(newTodo);
   }
-  constructor() {}
+
+  updateTodo(
+    id: number,
+    title: string,
+    todotask: string,
+    check: boolean
+  ): void {
+    const todo = this.todoList.value.find((todo) => todo.id === id);
+    if (todo) {
+      todo.title = title;
+      todo.todotask = todotask;
+      todo.check = check;
+    }
+  }
+
+  deleteTodo(id: number) {
+    this.todoList.next(this.todoList.value.filter((todo) => todo.id !== id));
+  }
+
+  toggleCheck(id: number) {
+    let index = this.todoList.value.findIndex((todo) => todo.id === id);
+    this.todoList.value[index].check = !this.todoList.value[index].check;
+  }
 }

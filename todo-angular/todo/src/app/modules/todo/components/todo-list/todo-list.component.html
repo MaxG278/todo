@@ -1,1 +1,8 @@
-<p>todo-list works!</p>
+<div *ngFor="let todo of todoList">
+  <h1>{{ todo.title }}</h1>
+
+  <button (click)="onDeleteTodo(todo.id)">Delete</button>
+  <button (click)="toggleCheck(todo.id)">
+    {{ todo.check ? "Uncheck" : "Check" }}
+  </button>
+</div>
